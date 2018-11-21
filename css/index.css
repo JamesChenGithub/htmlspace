@@ -1,0 +1,6 @@
+.background{background-color: aquamarine; }
+.navigation{background-color: beige; height: 100px; }
+.content{background-color: rebeccapurple ; height: 800px;}
+.left{background-color: red; width: 20%; height: 800px;}
+.middle{background-color: yellow; width: 60%; height: 800px;}
+.right{background-color: blue; width: 60%; height: 800px;}
