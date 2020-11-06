@@ -1,0 +1,46 @@
+.background {
+    background-color: aquamarine;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.navigation {
+    background-color: beige;
+    height: 8%;
+}
+
+.content {
+    background-color: red;
+    width: 100%;
+    height: 87%;
+
+}
+
+.left {
+    background-color: yellow;
+    width: 10%;
+    height: 100%;
+    float: left;
+
+}
+
+.middle {
+    background-color: blue;
+    width: 80%;
+    height: 100%;
+    float: left;
+
+}
+
+.right {
+    background-color: gray;
+    width: 10%;
+    height: 100%;
+    float: left;
+
+}
+
+.footer {
+    background-color: black;
+    height: 5%;
+}
