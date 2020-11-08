@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加载动画效果</title>
+    <!-- https://www.bilibili.com/video/BV1wr4y1w7gw -->
+    <style>
+        :root {
+            --color1: red;
+            --color2: orange;
+            --color3: purple;
+            --color4: black;
+            --background-color: rgb(100, 100, 180);
+
+        }
+
+        body {
+            background: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .content {
+            width: 50vh;
+            height: 70vh;
+            background-color: springgreen;
+        }
+
+        .channel {
+            /* background-color: red; */
+            width: 100%;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .container {
+            margin: 10% auto;
+            /* background-color: var(--color1); */
+            width: 80%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: animation_container 2s linear 1 forwards;
+        }
+
+        @keyframes animation_container {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .loader {
+            width: 80%;
+            height: 80%;
+            top: 0;
+            /* background-color: var(--color2); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: animation_loader 3s linear infinite;
+        }
+
+        @keyframes animation_loader {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .petal {
+            position: absolute;
+            width: 30%;
+            height: 15%;
+            background-color: var(--color3);
+            border: .5vh solid var(--color4);
+            box-shadow: 0 0 10vh var(--color2);
+            border-radius: 0 10vh 0 10vh;
+            transform: rotate(calc(var(--i) * 45deg))translateY(12vh);
+            animation: animation_petal 1.6s linear infinite;
+            animation-delay: calc(var(--i) * 200ms);
+        }
+
+        @keyframes animation_petal {
+            0% {
+                border: .5vh solid var(--color4);
+                box-shadow: 0 0 10vh var(--color2);
+            }
+
+            50% {
+                border: .5vh solid var(--color3);
+                box-shadow: 0 0 10vh var(--color2);
+            }
+
+            100% {
+                border: .5vh solid var(--color4);
+                box-shadow: 0 0 10vh var(--color2);
+            }
+        }
+
+        .progress {
+            position: absolute;
+            width: 30vh;
+            height: 1vh;
+            background-color: lightcoral;
+            border-radius: 0.5vh;
+            overflow: hidden;
+            bottom: 10vh;
+        }
+
+        .progress::after {
+            position: absolute;
+            content: '';
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            background-color: lightgoldenrodyellow;
+            opacity: 0.6;
+            left: -100%;
+            animation: animation_progress 8s ease-in-out 1 2s forwards;
+
+        }
+
+        @keyframes animation_progress {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="channel">
+            编译中梦见未来
+        </div>
+        <div class="container">
+            <div class="loader">
+                <div class="petal" style="--i:1"></div>
+                <div class="petal" style="--i:2"></div>
+                <div class="petal" style="--i:3"></div>
+                <div class="petal" style="--i:4"></div>
+                <div class="petal" style="--i:5"></div>
+                <div class="petal" style="--i:6"></div>
+                <div class="petal" style="--i:7"></div>
+                <div class="petal" style="--i:8"></div>
+            </div>
+            <div class="progress"></div>
+        </div>
+    </div>
+</body>
+
+</html>
