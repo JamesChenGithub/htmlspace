@@ -1,0 +1,37 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, white, black);
+    
+}
+
+.piano-container, .piano {
+    display: flex;
+}
+
+.piano button:nth-child(odd){
+    --width : 120px;
+    width: var(--width);
+    height: calc( var(--width) * 3);
+    background-color: white;
+    border: 1px solid #333;
+
+}
+
+.piano button:nth-child(even){
+    --width : 75px;
+    width: var(--width);
+    height: calc( var(--width) * 3);
+    background-color: black;
+    margin-left: calc(var(--width)/-2);
+    margin-right: calc(var(--width)/-2);
+    z-index: 2;
+}
