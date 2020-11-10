@@ -1,0 +1,162 @@
+
+<style>
+    /* 这两个为初始就确定的基准值 */
+$containerWidth: 305px;
+$itemMargin: 15px;
+
+$itemWidth: 130px;
+$itemHeight: 150px;
+
+/* 每行项目数量为itemNum时的容器宽度 */
+@function getContainerWidth($itemNum) {
+    @return $itemNum * $itemWidth + ($itemNum + 1) * $itemMargin;
+}
+
+/* 配置各个页面宽度下的容器宽度（应用） */
+@mixin adjustContainerWidth(
+    $from: 2,
+    $to: 5
+) {
+    @for $i from $from through $to {
+        $minWidth: getContainerWidth($i);
+        $maxWidth: getContainerWidth($i + 1);
+
+        @media only screen and (min-width: $minWidth) and (max-width: $maxWidth) {
+            .container {
+                width: $minWidth;
+            }
+        }
+    }
+}
+
+.container {
+    margin: 20px auto;
+    width: $containerWidth;
+    background-color: #f2f2f2;
+    color: #666;
+
+    h2 {
+        margin: 20px;
+        padding-top: 20px;
+        font-size: 20px;
+    }
+}
+
+@include adjustContainerWidth(
+    $from: 1,
+    $to: 7
+);
+
+.proj-items {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
+}
+
+.proj-item {
+    margin-left: $itemMargin;
+    margin-bottom: $itemMargin;
+    width: $itemWidth;
+    height: $itemHeight;
+    background-color: #fff;
+    border-radius: 3px;
+    text-align: center;
+
+    &:hover {
+        box-shadow: 0 0 20px #ddd;
+    }
+
+    a {
+        display: block;
+        padding: 15px;
+        height: 100%;
+        color: #666;
+        text-decoration: none;
+    }
+
+    &__title {
+        margin-top: 0;
+        font-size: 16px;
+    }
+
+    &__author {
+        font-size: 12px;
+    }
+}
+</style>
+
+
+
+<div class="container">
+    <h2>项目列表</h2>
+    <ul class="proj-items"></ul>
+</div>
+
+<!-- 模板结构 -->
+<script type="text/template" id="proj-item-tpl">
+    <li class="proj-item">
+        <a href="#/p/{{projectID}}">
+            <h3 class="proj-item__title">{{projectName}}</h3>
+            <p class="proj-item__author">{{author}}</p>
+        </a>
+    </li>
+</script>
+
+<script>
+    function addEvent(elem, type, handler) {
+            elem.addEventListener(type, handler, false);
+        }
+
+        function qs(selector) {
+            return document.querySelector(selector);
+        }
+
+        function qsa(selectors) {
+            return document.querySelectorAll(selectors);
+        }
+
+        var mockData = (function(num) {
+            var data = [];
+            
+            for (var i = 1; i <= num; ++i) {
+                data.push({
+                    projectID: i,
+                    projectName: '项目' + i,
+                    author: '张大大'
+                });
+            }
+            
+            return data;
+        })(8);
+        
+        var itemTpl = qs('#proj-item-tpl').innerHTML;
+        var itemsDOM = qs('.proj-items');
+        
+        /**
+         * 渲染数据
+         * @param  {[type]} data [description]
+         * @return {[type]}      [description]
+         */
+        function renderList(data) {
+            var html = '';
+            var fragment = document.createDocumentFragment();
+
+            data.forEach(function(item) {
+                var divTemp = document.createElement('div');
+
+                // 模板替换
+                divTemp.innerHTML = itemTpl.replace(/{{(\w+)}}/g, function(input, match) {
+                    return match ? item[match] || '' : '';
+                });
+
+                fragment.appendChild(divTemp.firstElementChild);
+            });
+
+            // 渲染
+            itemsDOM.appendChild(fragment);
+        }
+       
+        renderList(mockData);
+</script>
+

@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content : center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.channel {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200px);
+    font-size: 30px;
+    font-weight: bold;
+    color: wheat;
+}
+
+.container {
+    width: 800px;
+    
+}
