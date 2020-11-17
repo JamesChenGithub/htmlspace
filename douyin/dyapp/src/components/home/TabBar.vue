@@ -1,21 +1,20 @@
 <template>
   <div class="tab-bar">
     <div class="item" @click="changeTab(0)">
-      <span :class="tabIndex == 0 ? 'active' : ''">首页</span>
+      <router-link to="/index" tag="span" :class="tabIndex == 0 ? 'active' : ''">首页</router-link>
     </div>
     <div class="item" @click="changeTab(1)">
-      <span :class="tabIndex == 1 ? 'active' : ''">熟人</span>
+      <router-link to="/follow" tag="span" :class="tabIndex == 1 ? 'active' : ''">熟人</router-link>
     </div>
     <div class="item" @click="changeTab(2)">
-      <span :class="tabIndex == 2 ? 'active' : ''"
-        ><img class="dy-btn" src="../../static/img/dy-btn.png" alt=""
-      /></span>
+      <router-link to="/index" tag="span" :class="tabIndex == 2 ? 'active' : ''"
+        ><span class="iconfont icon-tianjia"></span></router-link>
     </div>
     <div class="item" @click="changeTab(3)">
-      <span :class="tabIndex == 3 ? 'active' : ''">消息</span>
+      <router-link to="/index" tag="span" :class="tabIndex == 3 ? 'active' : ''">消息</router-link>
     </div>
     <div class="item" @click="changeTab(4)">
-      <span :class="tabIndex == 4 ? 'active' : ''">我</span>
+      <router-link to="/index" tag="span" :class="tabIndex == 4 ? 'active' : ''">我</router-link>
     </div>
   </div>
 </template>
@@ -60,13 +59,5 @@ export default {
   color: white;
 }
 
-.tab-bar .item span {
-  padding: 10px 0;
-}
 
-.tab-bar .item .dy-ttn {
-  width: 30px;
-  height: 30px;
-  padding: 10px;
-}
 </style>
